@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, user-scalable=no">
+    <style type="text/css">
+      html, body, p, li {
+        font-family: "Segoe UI";
+      }
+      input[type=submit] {
+        font-size: 15px;
+        background-color: #29A0FF;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        margin-top:10px;
+      }
+      tr{
+      height:48px
+      }
+      .Excelente{background: #8bff84;}
+      .Buena{background: #f8ff8a;}
+      .Mala{background: #ff9191;}
+    </style>
+    <title>Configuracion</title> 
+  </head>
+
+  <body style="text-align: center;"> 
+    <div style="display: inline-block;">
+      <h1>Configuracion red WIFI</h1>
+      <table border="1" style="width: 100%;">
+        <tbody>
+          <tr>
+            <th>Red:</th>
+            <th>Señal:</th>
+          </tr>
+          $tr_swap
+        </tbody>
+      </table>
+
+      <div class="psw" style="margin-top: 10px;">
+        <label style="text-align: left;display: block;">Red:</label>
+        <input id="wifi_ssid" style="padding: 8px 8px; display: block;width: 94%;" disabled>
+        <label style="text-align: left;display: block;">Contraseña:</label>
+        <input id="wifi_psw" style="padding: 8px 8px;display: block;width: 94%;">
+        <input onclick="send_data()"id="login_input" value="GUARDAR" type="submit" style="width: 100%;height: 58px;">
+      </div>
+
+    </div>
+  </body>
+  <iframe id="data_frame" STYLE='position:absolute; TOP:0px; LEFT:0px'height="0" width="0"></iframe>
+  <script>
+    last_sender = ""
+    selected_ssid = "$cred_ssid"
+    selected_psw = "$cred_psw"
+
+    og_url = window.location.href
+    document.getElementById('wifi_ssid').value = selected_ssid
+    document.getElementById('wifi_psw').value = selected_psw
+
+    function set_ssid(sender){
+      if (last_sender != sender){last_sender.style="background:white"}
+      sender.style="background:#92cfff"
+      selected_ssid = sender.textContent
+      document.getElementById('wifi_ssid').value = selected_ssid
+      last_sender = sender
+    }
+
+    function send_data(){
+      ssid_psw = document.getElementById('wifi_psw').value
+      url_data = og_url + "?@credentials:" + selected_ssid + "," + ssid_psw + "@end"
+      console.log(url_data)
+      document.getElementById('data_frame').src = url_data
+    }
+  </script>
+</html>
