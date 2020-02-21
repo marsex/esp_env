@@ -1,5 +1,5 @@
 {
-  "git_url":"https://raw.githubusercontent.com/marsex/esp_structure/master/structure/",
+  "git_url":"https://raw.githubusercontent.com/marsex/esp_env/master/structure/",
   "sys_info":"0.9.2.6",
   "wifi.py":"0.9.1.8",
   "update.py":"0.9.1.9",
